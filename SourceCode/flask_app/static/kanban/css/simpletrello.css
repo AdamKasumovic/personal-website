@@ -1,0 +1,122 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+/* || Variables */
+:root {
+
+}
+
+/* || Board page styles */
+.create-board-hint, .board-container, .create-board-button-container, .create-board-container {
+    width: 80vw;
+    margin: 0 auto 1vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-board-hint {
+    font-size: 2.5vw;
+    font-weight: bolder;
+    text-align: justify;
+    margin-top: 1vw;
+}
+
+#create-board-hint-text {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* || Button styles */
+#goto-board, #create-board-button, #create-board-confirm {
+    background-color: #222222;
+    color: #ffffff;
+    font-size: 2vw;
+    width: 80vw;
+    display: block;
+    margin-bottom: 0;
+}
+
+.board-name, #board-email {
+    margin-bottom: 0;
+}
+
+/* || Input styles */
+#board-name {
+    width: 80vw;
+    height: 3vw;
+    font-size: 2vw;
+}
+
+.board-email-form {
+    display: flex;
+    flex-direction: row;
+}
+
+#board-email, #email-submit {
+    height: 3vw;
+    font-size: 2vw;
+}
+
+#email-submit {
+    background-color: #222222;
+    color: #ffffff;
+    display: block;
+    width: 12.5vw;
+}
+
+#board-email {
+    display: block;
+    width: 62.5vw;
+    margin-right: 5vw;
+}
+
+/* || Misc */
+.line-separator {
+    margin-bottom: 1vw;
+}
+
+.authorized-emails {
+    font-size: 2vw;
+    text-decoration: underline;
+}
+
+.added-email {
+    display: block;
+    font-style: italic;
+    font-size: 1.5vw;
+}
+
+/* Fix very very long words breaking style */
+main {
+    word-wrap:break-word;
+}
+
+/* Hide create board stuff */
+.create-board-container {
+    display: none;
+}

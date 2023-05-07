@@ -1,0 +1,193 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+main {
+    font-size: min(2vw, var(--regular-font));  /* Help with mobile viewing */
+    width: 90vw;
+    margin: 1vh auto 0;
+}
+
+/* || Variables */
+:root {
+    --mobile-min-height-inst: 35px;
+    --small-font: 16px;
+}
+
+/* || Resume styles */
+/* Right-justified content */
+.inst-department, .inst-address, .pos-right {
+    float: right;
+}
+
+/* Left-justified content (necessary for independent styling on left and right) */
+.inst-left, .pos-left {
+    float: left;
+}
+
+.responsibilities, .experience {
+    font-style: italic;
+}
+
+/* || Institution styles */
+.inst-separator {
+    width: 90vw;
+    margin-top: 4vh;
+}
+
+.inst-container {
+    height: 6vh;
+    min-height: var(--mobile-min-height-inst);
+}
+
+.inst-left {
+    font-size: min(4.4vw, var(--x-large-font));
+    font-weight: bold;
+    padding-top: 2vh;
+}
+
+.inst-department, .inst-address {
+    position: relative;
+    top: 3.5vh;
+    margin: 0;
+}
+
+/* || Position styles */
+.pos-container {
+    padding-left: 0.5vw;
+    width: 89.5vw;
+    margin-left: 0;
+    display: block;
+    word-wrap:break-word;
+    white-space: normal;
+}
+
+.pos-left {
+    font-size: min(2.2vw, var(--large-font));
+    font-weight: bold;
+}
+
+.pos-left, .pos-right {
+    height: 1vh;
+}
+
+.pos-right {
+    padding-left: 0;
+}
+
+.responsibilities {
+    padding-top: 1vh;
+}
+
+.pos--responsibilities {
+    padding-left: 0;
+}
+
+/* || Experience styles */
+.exp-container {
+    padding-left: -1vw;
+}
+
+.exp-link {
+    padding-left: 0;
+}
+
+.experiences-list, .skills-list {
+    position: relative;
+    left: 5vw;
+}
+
+.exp-container {
+    width: 85vw;
+    margin-left: 0;
+}
+
+.experience {
+    word-wrap: break-word;
+}
+
+/* || Skill styles */
+.skills, .skill {
+    font-size: min(1.8vw, var(--small-font));
+}
+
+.skills {
+    padding-left: 1vw;
+    text-decoration: underline;
+}
+
+.skills-list {
+    width: 80vw;
+}
+
+/* || Edit header styles */
+.edit-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    width: 80vw;
+    margin: 0 auto;
+    padding-bottom: 0.75em;
+    padding-top: 0.5em;
+}
+
+/* || Edit button styles */
+.edit-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    z-index: 6;
+}
+
+#edit-save-button, #cancel-button, #add-inst-button {
+    width: 20vw;
+    background-color: #222222;
+    color: #ffffff;
+    font-size: min(4vw,calc(var(--regular-font)*2));
+}
+
+#edit-save-button:hover, #cancel-button:hover, #add-inst-button:hover {
+    background-color: #444444;
+}
+
+#cancel-button, #add-inst-button {
+    display: none;
+}
+
+/* || Editable resume fixes */
+/* Hide newlines */
+[contenteditable="true"] * {
+    display: inline;
+}
+
+[contenteditable="true"] br {
+    display: none;
+}

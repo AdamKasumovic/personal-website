@@ -1,0 +1,74 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+/* || Variables */
+:root {
+
+}
+
+/* || Login styles */
+/* Login container styles */
+.login-page-header, .login-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    width: 80vw;
+    margin: 0 auto;
+    padding-bottom: 0.75em;
+    padding-top: 0.5em;
+    font-size: var(--regular-font);
+}
+
+/* || Login form styles */
+.login-form {
+    width: 75%;
+    margin: 0.5em auto;
+}
+
+.login-form > * {
+    width: 100%;
+}
+
+#login-submit {
+    background-color: #222222;
+    color: #ffffff;
+    font-size: var(--large-font);
+}
+
+/* || Unsuccessful text styles */
+#unsuccessful-login-attempts {
+    padding-top: 0;
+    font-size: calc(var(--regular-font) * 0.9);
+    color: #ff0000;
+    display: none;
+}
+
+/* || Sign up related styles */
+.dont-have-account {
+    font-size: calc(var(--regular-font) * 0.95);
+}

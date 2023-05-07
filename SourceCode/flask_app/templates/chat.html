@@ -1,0 +1,58 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The chat page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main/css/chat.css') }}">
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js" defer></script>
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js" defer></script>
+<script src="{{ url_for('static', filename='main/js/chat.js') }}" defer></script>
+{% endblock %}
+
+{#{% block mainblock %}#}
+{#<p>Chat</p>#}
+{##}
+{#<div id='chat' contenteditable>    #}
+{#</div>#}
+{##}
+{#<p class="email">#}
+{#<input placeholder="Enter Your Message Here" />#}
+{#</p>#}
+{#{% endblock %}#}
+
+{% block mainblock %}
+<main>
+    <!-- A header about the page -->
+    <div class="chat-page-header">
+        <h1>
+            <span class="big-text">Chat</span>
+        </h1>
+        <p>
+            Chat with anyone around the world!
+        </p>
+    </div>
+    <hr class="line-separator">
+    <!-- The box where chat messages appear (this is dynamically populated) -->
+    <div id='chat'>
+    </div>
+    <!-- The box where users type in messages -->
+    <p class="enter-message">
+        <input id="message-content" name="message-content" title="Type in a valid message."
+               placeholder="Enter your message." pattern=".{1,}" required>
+    </p>
+    <!-- The button that leaves the chat -->
+    <div class="leave-chat-container">
+        <input class="hover-able" id="leave-chat" type="submit" title="Hit the Leave Chat button." value="Leave Chat"
+                   onclick="leaveRoom()">
+    </div>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name">© 2022 Adam Kasumovic</p>
+{% endblock %}

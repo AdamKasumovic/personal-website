@@ -1,0 +1,137 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The dynamic resume page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='resume/css/resume.css') }}">
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="{{ url_for('static', filename='main/js/resume.js') }}" defer></script>
+{% endblock %}
+
+{% block mainblock %}
+<main>
+    {% if 'email' in session and db.reversibleEncrypt('decrypt', session['email']) == 'owner@email.com' %}
+        <div class="edit-header">
+            <p id="edit-header-text">
+            </p>
+        </div>
+        <div class="edit-container">
+            <button id="edit-save-button">Edit</button>
+            <button id="cancel-button">Cancel</button>
+            <button id="add-inst-button">Add Inst.</button>
+        </div>
+    {% endif %}
+    <!-- For every institution... -->
+    {% for inst_id, inst in resume_data.items() %}
+        <div class="inst-container">
+            <!-- These should be left justified (float left) -->
+            <span class="limit-g2 inst-left inst--name" data-id={{ inst_id }}> {{ inst['name'] }} </span>
+
+            <!-- These should be right justified (float right) -->
+            {% if inst['department'] != None %}
+                <span class="limit-g3 inst-department inst--department" data-id={{ inst_id }}> {{ inst['department'] }} </span>
+                <span class="limit-g3 inst-department" data-id={{ inst_id }}> {{ 'Department:' }}&nbsp; </span>
+            {% endif %}
+            <!-- Only show address if there is one -->
+            {% if inst['address'] != None or inst['city'] != None or inst['state'] != None or inst['zip'] != None %}
+                <br>
+            {% endif %}
+            <!-- I'm assuming that every address belongs to a city and that every city belongs to a state -->
+            {% if inst['zip'] != None %}
+                <span class="limit-g4 inst-address inst--zip" data-id={{ inst_id }}> {{ inst['zip'] }} </span>
+            {% endif %}
+            {% if inst['state'] != None %}
+                {% if inst['zip'] != None %}  <!-- Only add space if there is something to the right -->
+                    <span class="limit-g4 inst-address" data-id={{ inst_id }}> &nbsp; </span>
+                {% endif %}
+                <span class="limit-g4 inst-address inst--state" data-id={{ inst_id }}> {{ inst['state'] }} </span>
+            {% endif %}
+            {% if inst['city'] != None %}
+                {% if inst['state'] != None or inst['zip'] != None %}
+                    <span class="limit-g4 inst-address" data-id={{ inst_id }}> {{ ',' }}&nbsp; </span>
+                {% endif %}
+                <span class="limit-g4 inst-address inst--city" data-id={{ inst_id }}> {{ inst['city'] }} </span>
+            {% endif %}
+            {% if inst['address'] != None %}
+                {% if inst['city'] != None or inst['state'] != None or inst['zip'] != None %}
+                    <span class="limit-g4 inst-address" data-id={{ inst_id }}> {{ ',' }}&nbsp; </span>
+                {% endif %}
+                <span class="limit-g4 inst-address inst--address" data-id={{ inst_id }}> {{ inst['address'] }} </span>
+            {% endif %}
+        </div>
+        {% set n = namespace(first = True) %}
+        <!-- For every position in this institution... (no need to check if there are none since the loop will skip) -->
+        {% for pos_id, pos in inst['positions'].items() %}
+            <div class="pos-container">
+                <!-- Only add a line on the first iteration -->
+                {% if n.first %}
+                    <br>
+                    {% set n.first = False %}
+                {% endif %}
+
+                <!-- These should be left justified -->
+                <!-- Limit size of these text objects, assign them to group X -->
+                <span class="limit-g1 pos-left pos--title" data-id={{ pos_id }}> {{ pos['title'] }} </span>
+
+                <!-- These should be right justified -->
+                <!-- Say "Present" if end_date not present -->
+                {% if pos['end_date'] != None %}
+                <span class="limit-g1 pos-right pos--end-date" data-id={{ pos_id }}> {{ pos['end_date'] }} </span>
+                {% else %}
+                <span class="limit-g1 pos-right pos--end-date" data-id={{ pos_id }}> {{ "Present" }} </span>
+                {% endif %}
+                <span class="pos-right"> &nbsp;{{ 'to' }}&nbsp; </span>
+                <span class="limit-g1 pos-right pos--start-date" data-id={{ pos_id }}> {{ pos['start_date'] }} </span>
+
+                <!-- This should be formatted differently -->
+                <br>
+                <p class="responsibilities"> {{ 'Responsibilities:' }}
+                    <span class="pos--responsibilities" data-id={{ pos_id }}> {{ pos['responsibilities'] }} </span>
+                </p>
+            </div>
+            <!-- For every experience during this position... -->
+            <!-- Use bullets -->
+            <ul class="experiences-list">
+                {% for exp_id, exp in pos['experiences'].items() %}
+                    <li class="exp-bullet">
+                        <div class="exp-container">
+                            <!-- Experience names are also links -->
+                            <span class="exp-name exp--name" data-id={{ exp_id }}>
+                                <a target="_blank" class="exp-link hover-able" href={{ exp['hyperlink'] }}
+                                        title="More about {{ '"' + exp['name'] + '"'}}"> {{ exp['name'] }} </a>
+                            </span>
+                            <!-- Italicize this -->
+                            <p class="experience exp--description" data-id={{ exp_id }}> {{ exp['description'] }} </p>
+                            <!-- Only display if skills is nonempty -->
+                            {% if exp['skills'] %}
+                                <div class="skills"> {{ 'Relevant skills: ' }} </div>
+                            {% endif %}
+                            <!-- Nested bullets of skills -->
+                            <ul class="skills-list">
+                                {% for skl_id, skl in exp['skills'].items() %}
+                                    <li class="skill-bullet">
+                                        <span class="skill skl--name" data-id={{ skl_id }}> {{ skl['name'] }} </span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        <hr class="line-separator inst-separator">
+    {% endfor %}
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name">© 2022 Adam Kasumovic</p>
+{% endblock %}

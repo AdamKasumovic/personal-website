@@ -1,0 +1,55 @@
+/* || General Styles */
+/* Everything has no margin or padding by default */
+html {
+    margin: 0;
+    padding: 0;
+}
+*, *::before, *::after {
+    margin: inherit;
+    padding: inherit;
+}
+
+/* Main tags */
+body {
+    font-family: Roboto, sans-serif;
+    box-sizing: border-box;  /* Alternate box */
+}
+
+/*
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+/* || Variables */
+:root {
+    --header-min-height: 60px;
+}
+
+/* || Header container */
+header > div.box {
+    height: 10vh;
+    min-height: var(--header-min-height);
+    overflow: hidden;
+}
+
+/* || Banner image style */
+header img.banner-image {
+    width: 100%
+}

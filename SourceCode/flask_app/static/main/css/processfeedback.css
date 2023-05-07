@@ -1,0 +1,61 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+main {
+    font-size: min(2vw, var(--regular-font));  /* Help with mobile viewing */
+    width: 90vw;
+    margin: 0 auto 0;
+}
+
+/* || Variables */
+:root {
+    --ty-min-height: 35px;
+}
+
+/* || Process feedback styles */
+.feedback-separator {
+    width: 90vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    border: calc(var(--border-thickness) / 4) solid #d4d4d4;
+    background-color: #d4d4d4;
+}
+
+.thank-you {
+    height: 10vh;
+    min-height: var(--ty-min-height);
+    width: 90%;
+    margin: 2vh auto 0;
+    text-align: center;
+    font-size: max(min(3vmin, calc(var(--ty-min-height) * 0.75)), 2vw);
+    font-weight: bold;
+}
+
+.feedback-result-name {
+    font-size: min(3vw, calc(var(--regular-font) * 1.5));
+    font-style: italic;
+}

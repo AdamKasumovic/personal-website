@@ -1,0 +1,165 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+*/
+h1 {
+    font-weight: 900;
+}
+/*
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+/* || Variables */
+:root {
+    --border-thickness: 2px;
+    --regular-font: 18px;
+    --large-font: 20px;
+    --x-large-font: 38px;
+}
+
+/* || Main Styles */
+/* Main container */
+.about-me {
+    width: 80vw;
+    height: 50vh;
+    margin: 0 auto;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    flex-wrap: nowrap;
+}
+
+/* Picture of me container */
+.self-portrait {
+    flex:1;
+    padding-top: 0;
+    padding-bottom: 0;
+    max-width: 50%; /* limit columns to 50% width */
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border: var(--border-thickness) solid #000000;
+    background-color: #000000;
+}
+
+/* Description container */
+.brief-desc {
+    flex:1;
+    padding-top: 0;
+    padding-bottom: 0;
+    max-width: 50%;
+    font-size: var(--large-font);
+    overflow: auto;  /* text-overflow handler */
+    text-align: justify;
+    text-justify: inter-word;
+    padding-left: 0.5em;
+}
+
+/* Put space after paragraphs after inheriting removed padding */
+.desc-para {
+    padding-bottom: 1em;
+    padding-right: 1em;
+}
+
+/* Increases text size */
+.big-text {
+    font-size: var(--x-large-font);
+    padding: 0
+}
+
+/* Fun fact styles */
+.fun-fact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    width: 80vw;
+    margin: 0 auto;
+    padding-top: 1.25em;
+    font-size: var(--regular-font);
+}
+
+/* Project page purpose styles */
+.project-page-purpose {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    width: 80vw;
+    margin: 0 auto;
+    padding-bottom: 0.75em;
+    padding-top: 0.5em;
+    font-size: var(--regular-font);
+}
+
+/* Make image not get cut off */
+.pic-of-me {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Get rid of inherited padding. */
+.piano-link {
+    padding: 0;
+}
+
+/* Image of piano style */
+.pic-of-piano, .piano-picture-link {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
+/* Make break shorter */
+.line-separator {
+    width: 80vw;
+    margin: 0 auto;
+    border: calc(var(--border-thickness) / 2) solid #aaaaaa;
+    background-color: #aaaaaa;
+}
+
+/* || Shift to one-column when screen skinny enough */
+@media screen and (max-width: 650px) {
+    /* Two-columns to one-column */
+    .about-me {
+        overflow: visible;
+        flex-direction: column;
+    }
+
+    /* Make it so that entire column space is taken up when combined with min-width */
+    .self-portrait, .brief-desc {
+        display: block;
+    }
+
+    /* Add space below and fix border exceeding container */
+    .self-portrait {
+        min-width: calc(100% - 2*var(--border-thickness));
+        margin-bottom: 1em;
+    }
+
+    /* Remove unnecessary padding */
+    .brief-desc {
+        min-width: 100%;
+        padding-left: 0;
+    }
+}

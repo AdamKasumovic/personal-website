@@ -1,0 +1,128 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+/* Fix feedback button placement */
+main {
+    overflow: hidden;
+}
+
+/* || Variables */
+:root {
+    --feedback-button-width: 100px;
+    --feedback-text-mobile-min: 11px;
+    --feedback-text-min: 11px;
+    --feedback-form-min-width: 325px;
+    --feedback-form-min-height: 406px;
+}
+
+/* || Feedback Styles */
+/* || Feedback button styles */
+.feedback-button-container {
+    position: fixed;
+    left: 100%;
+    top: 50%;
+    transform: rotate(90deg) translateX(-50%);
+    transform-origin: 0 0;
+    width: var(--feedback-button-width);
+    height: 2vw;
+    background-color: #222222;
+    z-index: 10;
+    user-select: none;  /* Make it so the text doesn't get highlighted */
+}
+
+.feedback-button {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    transform: scale(-1,-1);
+    font-size: max(1.25vw, var(--feedback-text-min));
+    vertical-align: middle;
+    height: 85%;
+    margin: auto 0;
+    pointer-events: none;  /* Necessary for usability */
+}
+
+/* || Feedback form styles */
+.feedback-form-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+    z-index: 11;
+    background-color: #222222;
+    width: 40vw;
+    height: 50vh;
+    min-width: var(--feedback-form-min-width);
+    min-height: var(--feedback-form-min-height);
+    display: none;
+}
+
+.feedback-form {
+    padding-top: max(2vh, calc(var(--feedback-form-min-height) / 25));
+}
+
+.feedback-form > * {
+    position: relative;
+    left: max(2vw, calc(var(--feedback-form-min-width) / 20));
+    padding: unset;
+    margin-bottom: max(2vh, calc(var(--feedback-form-min-height) / 25));
+}
+
+/* Form element sizing */
+#name, #email, #comment, #submit {
+    width: max(36vw, calc(var(--feedback-form-min-width) * 0.9));
+}
+
+#comment {
+    resize: none;
+    height: max(20vh, calc(var(--feedback-form-min-height) / (50/20)));
+    font-family: Roboto, sans-serif;
+}
+
+#name, #email {
+    height: max(5vh, calc(var(--feedback-form-min-height) / (50/5)));
+}
+
+#submit {
+    height: max(8vh, calc(var(--feedback-form-min-height) / (50/6)));
+    margin-bottom: 0;
+    background-color: #aaaaff;
+    font-size: var(--large-font);
+    border: var(--border-thickness) solid #ffffff;
+    font-weight: bold;
+}
+
+/* || Adjust feedback button when on mobile */
+@media screen and (max-width: 650px) {
+    .feedback-button {
+        writing-mode: vertical-lr;
+        text-orientation: upright;
+        transform: rotate(-90deg);
+        font-size: max(1.6vw, var(--feedback-text-mobile-min));
+        text-transform: uppercase;
+    }
+}

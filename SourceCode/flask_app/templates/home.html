@@ -1,0 +1,87 @@
+{#{% extends 'shared/layout.html' %}#}
+{##}
+{#{% block maincontent %}#}
+{#      <div class="space"></div>#}
+{##}
+{#      <!-- A block of content -->#}
+{#      <div class="row">        #}
+{#        <div class="half-column x-center y-center">#}
+{#          <img src="static/main/images/headshot.png" >#}
+{#        </div>#}
+{##}
+{#        <div class="half-column x-center">#}
+{#          <p class="small-txt">#}
+{#            <span class="medium-txt">Prof. Ghassemi </span>#}
+{#            is an award winning scholar and entrepreneur. He holds a Ph.D from the Massachusetts Institute of Technology in electrical engineering and computer science with a focus on artificial intelligence, and a minor in institutional communications.#}
+{#            <br><br>#}
+{#            Mohammad has over 10 years of experience working in technical and strategic consulting. In prior engagements, he has guided innovation strategy, and built data-driven technologies that leverage AI+'Big Data' to increase customer engagement, improve cost effectiveness, and prioritize innovation opportunities. He was a recipient of the nationally renowned Goldwater scholarship, the internationally renowned Gates-Cambridge award, and several awards from the National Institutes of Health.#}
+{#            <br><br>#}
+{#            For his entrepreneurial accomplishments, he has received awards from the National Science Foundation, the Sandbox Innovation Foundation, The Legatum Foundation, The Mind Hand Heart Innovation Fund and MassChallenge. He was a finalist in the Bell-Labs Innovation Prize, and a recent winner of the internationally competitive MassChallenge. He holds multiple US Patents, has published over 30 peer-reviewed papers in several of the most highly respected scientific journals including: Nature Scientific Data, Science Translational Medicine, Proceedings of the IEEE, and the Proceedings of the Association for the Advancement of Artificial Intelligence. His work has been featured by the BBC, NPR, The Wall Street Journal and Newsweek.#}
+{#          </p>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <!-- Another block of content -->#}
+{#      <div class="space"><hr></div>#}
+{##}
+{#      <p class="medium-txt x-center ">A fun fact about me: </p>#}
+{#      <p class="x-center small-txt"> {{fun_fact}}</p>#}
+{#{% endblock %}#}
+{##}
+{##}
+
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The home page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block mainblock %}
+<main>
+    <!-- Each div here should end up being a column of its own -->
+    <div class="about-me">
+        <div class="self-portrait">
+            <img class="pic-of-me" src="{{ url_for('static', filename='main/images/adam-wide.jpg') }}"
+                 alt="A picture of me in front of a lighthouse." loading="lazy">
+        </div>
+        <div class="brief-desc">
+            <p class="desc-para">
+                <span class="big-text">I am Adam Kasumovic,</span> a senior majoring in Computer Science with
+                minors in Mathematics and Game
+                Design at Michigan State University. My passions include helping others and programming. It is
+                my ultimate goal in life to develop a piece of software that is widely-distributed and improves
+                the lives of many.
+            </p>
+            <p class="desc-para">
+                In the past I worked at IBM as a mainframe modernization application
+                developer intern, where I was lucky enough to learn COBOL and JCL through IBM's internal
+                learning system and meet many wonderful people. I was also given the opportunity to learn more
+                modern technologies such as Docker and Kubernetes during my work using IBM cloud.
+            </p>
+            <p class="desc-para">
+                My parents are both immigrants, and we used to visit family quite often.
+                Because my family is so spread out across Europe and Asia, I have visited over 15 countries
+                outside of North America!
+            </p>
+            <p class="desc-para">
+                In my free time, I enjoy playing the piano and video games, although as of late
+                I have not had the time to do much of either. However, it is my final year, and I can
+                finally see the light at the end of the tunnel. For now, I will just enjoy the ride.
+            </p>
+        </div>
+    </div>
+    <hr class="line-separator">
+    <div class="fun-fact">
+        <p>
+            <span class="big-text">A fun fact about me:</span>
+        </p>
+        <p>
+            {{fun_fact}}
+        </p>
+    </div>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name">© 2022 Adam Kasumovic</p>
+{% endblock %}

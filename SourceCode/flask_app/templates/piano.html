@@ -1,0 +1,118 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The piano application page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='piano/css/piano.css') }}">
+{% endblock %}
+
+{% block extrafonts %}
+<!-- Awesome Ranga font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ranga:wght@700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block extrajs %}
+<script src="{{ url_for('static', filename='piano/js/piano.js') }}" defer></script>
+{% endblock %}
+
+{% block mainblock %}
+<main class="content-wrapper">
+    <!-- The poem area -->
+    <div class="mysterious-poem">
+        <p>
+            "Behold piano great and old, it's master slumbers in far off cold,
+            <br>
+            <!-- Comes with helpful hint to see the secret! &quot; denotes quotation marks -->
+            If you wish to see anew, call out to it - <span class="evil-hint-text"
+                                                            title="(Try typing &quot;weseeyou&quot;)">
+            we see you.</span>"
+        </p>
+    </div>
+    <hr class="line-separator">
+    <!-- The piano area -->
+    <div class="keyboard-container">
+        <!-- The text area -->
+        <div class="piano-text-container">
+            <p class="ominous-text" id="summoned-text">"The Great Old One"</p>
+        </div>
+        <!-- For white keys -->
+        <div class="white-keys-container">
+            <div class="piano-key" id="c4">
+                <p class="key-label">A</p>
+            </div>
+            <div class="piano-key" id="d4">
+                <p class="key-label">S</p>
+            </div>
+            <div class="piano-key" id="e4">
+                <p class="key-label">D</p>
+            </div>
+            <div class="piano-key" id="f4">
+                <p class="key-label">F</p>
+            </div>
+            <div class="piano-key" id="g4">
+                <p class="key-label">G</p>
+            </div>
+            <div class="piano-key" id="a5">
+                <p class="key-label">H</p>
+            </div>
+            <div class="piano-key" id="b5">
+                <p class="key-label">J</p>
+            </div>
+            <div class="piano-key" id="c5">
+                <p class="key-label">K</p>
+            </div>
+            <div class="piano-key" id="d5">
+                <p class="key-label">L</p>
+            </div>
+            <div class="piano-key" id="e5">
+                <p class="key-label">;</p>
+            </div>
+        </div>
+        <!-- For black keys -->
+        <div class="black-keys-container">
+            <div class="piano-key" id="c-sharp4">
+                <p class="key-label">W</p>
+            </div>
+            <div class="piano-key" id="d-sharp4">
+                <p class="key-label">E</p>
+            </div>
+            <div class="piano-key" id="f-sharp4">
+                <p class="key-label">T</p>
+            </div>
+            <div class="piano-key" id="g-sharp4">
+                <p class="key-label">Y</p>
+            </div>
+            <div class="piano-key" id="a-sharp5">
+                <p class="key-label">U</p>
+            </div>
+            <div class="piano-key" id="c-sharp5">
+                <p class="key-label">O</p>
+            </div>
+            <div class="piano-key" id="d-sharp5">
+                <p class="key-label">P</p>
+            </div>
+        </div>
+    </div>
+    <!-- The great old one image container -->
+    <div class="replacement-image-container" id="great-old-one-pic">
+        <img class="great-old-one" src="{{ url_for('static', filename='piano/images/texture.jpeg') }}"
+             alt="An ancient monstrosity."
+             loading="lazy">
+    </div>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name-piano">© 2022 Adam Kasumovic</p>
+{% endblock %}
+
+{% block extraaudio %}
+<audio id="megalovania">
+    <source src="{{ url_for('static', filename='piano/audio/megalovania.mp3') }}" type="audio/mpeg">
+    Oops, the audio failed to load.
+</audio>
+{% endblock %}

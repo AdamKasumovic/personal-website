@@ -1,0 +1,83 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The dynamic boards page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='kanban/css/simpletrello.css') }}">
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js" defer></script>
+<script src="{{ url_for('static', filename='kanban/js/kanban.js') }}" defer></script>
+{% endblock %}
+
+{% block mainblock %}
+<main>
+    <!-- Display instructions -->
+    <div class="create-board-hint">
+        <p id="create-board-hint-text">
+            {% if not users_boards %}
+                Looks like you aren't a member of any boards. Why not create one using the button below?
+            {% else %}
+                Select from your boards or create a new one!
+            {% endif %}
+        </p>
+    </div>
+    {% if users_boards %}
+        <hr class="line-separator">
+        <div class="create-board-hint">
+            <p id="create-board-hint-text">
+                Boards (from newest to oldest):
+            </p>
+        </div>
+    {% endif %}
+    <!-- For every board... -->
+    {% for board_id, board_name in users_boards %}
+        <div class="board-container">
+            <p class="board-name">
+                <input class="hover-able" id="goto-board" type="submit"
+                       title="Visit the {{ board_name }} board." value="{{ board_name }}"
+                       onclick="gotoBoard({{ board_id }})">
+            </p>
+        </div>
+    {% endfor %}
+    <hr class="line-separator">
+    <!-- Create board button that makes the below visible in place of itself (permanently until leaving the page) -->
+    <div class="create-board-button-container">
+        <input class="hover-able" id="create-board-button" type="submit" title="Hit the Create Board button."
+                   value="Create Board" onclick="displayCreateBoard()">
+    </div>
+    <!-- Create board (should be invisible by default) -->
+    <div class="create-board-container">
+        <!-- Get the board name -->
+        <input id="board-name" name="board-name" title="Type in a valid board name."
+           placeholder="Enter board name." maxlength="99" required/>
+        <!-- The board email form -->
+        <form class="board-email-form">
+            <!-- "email" type decently enforces valid emails -->
+            <input id="board-email" type="email" name="board-email" title="Type in a valid email."
+               placeholder="Enter authorized email." maxlength="99" required/>
+            <input class="hover-able" id="email-submit" type="submit" title="Hit the Add Email button."
+                   value="Add Email" onclick="addEmail()">
+        </form>
+        <!-- Will display added emails -->
+        <span class="authorized-emails">Authorized Emails:</span>
+        <!-- Add spans to this list with the same class -->
+        <ul id="email-list">
+            <span class="added-email">{{ db.reversibleEncrypt('decrypt', session['email']) }}</span>
+        </ul>
+        <input class="hover-able" id="create-board-confirm" type="submit" title="Hit the Confirm button."
+                   value="Confirm" onclick="makeDefaultBoard()">
+    </div>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name">© 2022 Adam Kasumovic</p>
+{% endblock %}

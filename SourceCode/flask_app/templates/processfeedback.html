@@ -1,0 +1,33 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The dynamic feedback results page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main/css/processfeedback.css') }}">
+{% endblock %}
+
+{% block mainblock %}
+<main>
+    <div class="thank-you">
+        <p class="thank-you-text">Thanks for your feedback - here's what others said:</p>
+    </div>
+    <ul class="feedback-results-list">
+        <!-- For every feedback... -->
+        {% for fb in feedback %}
+            <li class="feedback-result">
+                <div class="feedback-result-text-container">
+                    <span class="feedback-result-name"> {{ fb['name'] }} </span>
+                    <span class="feedback-result-comment"> {{ ' said: ' + fb['comment'] }} </span>
+                </div>
+            </li>
+            <hr class="line-separator feedback-separator">
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name">© 2022 Adam Kasumovic</p>
+{% endblock %}

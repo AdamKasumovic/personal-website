@@ -1,0 +1,205 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+h1 {
+    font-weight: 900;
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+/* Fix weseeyou image */
+main {
+    overflow: visible;
+}
+
+/* || Variables */
+:root {
+    --piano-border-thickness: 6px;
+    --poem-font-size: 56px;
+    --text-outline-width: 2px;
+}
+
+/* || Main wrapper styles */
+.content-wrapper {
+    position: relative;
+}
+
+/* || Poem styles */
+.mysterious-poem, .piano-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    width: 80vw;
+    margin: 0 auto;
+    padding-bottom: 0.375em;
+    padding-top: 0.25em;
+    font-size: var(--poem-font-size);
+    font-family: 'Ranga', cursive;
+}
+
+/* Overrides */
+.piano-text-container {
+    font-size: calc(0.5em + 6vmin);
+    height: 25%;
+    padding: 0;
+    color: #ffffff;
+    /* I Googled how to do text outlines https://www.codesdope.com/blog/article/adding-outline-to-text-using-css/ */
+    -webkit-text-stroke-width: var(--text-outline-width);
+    -webkit-text-stroke-color: black;
+}
+
+/* Make text appear in front of any great-old-ones */
+.ominous-text {
+    z-index: 3;
+}
+
+/* Turn we see you red when hover to allude to a potential hint */
+.evil-hint-text:hover {
+    color: #ff0000;
+}
+
+/* I always wanted a red piano */
+/* || Piano container styles */
+.keyboard-container {
+    width: 80vw;
+    height: 50vh;
+    margin: 2em auto;
+    background-color: #880808;
+    border-top-left-radius: 5vmin;
+    border-top-right-radius: 5vmin;
+    cursor: default;  /* Prevent text from changing cursor within the piano */
+}
+
+.white-keys-container {
+    margin: 0 auto;
+    width: 70vw;
+    height: 75%;
+    display: grid;
+    /* 10 keys, each equally spread out and sized */
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.black-keys-container {
+    width: 70vw;
+    height: 45%;
+    display: grid;
+    /* Get a ton of columns to help place black keys */
+    grid-template-columns: repeat(200, 1fr);
+    justify-items: center;
+    /* Move black keys up */
+    margin: 0 auto;
+}
+
+/* || Piano key styles */
+.white-keys-container .piano-key {
+    background-color: #ffffff;
+    border: var(--piano-border-thickness) solid #000000;
+    width: calc(100% - calc(2*var(--piano-border-thickness)));
+    border-radius: 1vmin 1vmin 1vmin 1vmin;
+    position: relative;
+}
+
+.black-keys-container .piano-key {
+    background-color: #000000;
+    border: var(--piano-border-thickness) solid #000000;
+    width: calc(100% - calc(2*var(--piano-border-thickness)));
+    border-radius: 1vmin 1vmin 1vmin 1vmin;
+    position: relative;
+    top: -37.5vh; /* move black keys up */
+    z-index: 1;
+}
+
+/* Move black keys to correct positions. It seems that span of 10 and 20 columns per white key apart works. */
+.black-keys-container #c-sharp4 {
+  grid-column: 16 / span 10;
+}
+
+.black-keys-container #d-sharp4 {
+  grid-column: 36 / span 10;
+}
+
+.black-keys-container #f-sharp4 {
+  grid-column: 76 / span 10;
+}
+
+.black-keys-container #g-sharp4 {
+  grid-column: 96 / span 10;
+}
+
+.black-keys-container #a-sharp5 {
+  grid-column: 116 / span 10;
+}
+
+.black-keys-container #c-sharp5 {
+  grid-column: 156 / span 10;
+}
+
+.black-keys-container #d-sharp5 {
+  grid-column: 176 / span 10;
+}
+
+/* Set correct position and font size for key labels (hidden by default) */
+.key-label {
+    margin: 0 auto;
+    text-align: center;
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    display: none;  /* to be set to display: block in JS */
+}
+.white-keys-container .key-label {
+    font-size: 4vw;
+}
+
+.black-keys-container .key-label {
+    font-size: 1.5vw;
+    color: #ffffff;
+}
+
+/* || Other styles */
+/* Let copyright move around freely this time */
+.copyright-with-name-piano {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    text-justify: inter-word;
+    color: #aaaaaa;
+    padding-bottom: 2vh;
+}
+
+/* Great-old-one image container that pops up when weseeyou typed */
+.replacement-image-container {
+    width: 80vw;
+    height: 50vh;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    opacity: 0;  /* required for transitioning */
+    z-index: -1;
+}
+
+.great-old-one {
+    width: 100%;
+    height: 100%;
+}

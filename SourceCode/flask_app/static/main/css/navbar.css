@@ -1,0 +1,143 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+/* || Variables */
+:root {
+    --nav-bar-min-height: 48px;
+    --nav-bar-font-size: 16px;
+    --linkedin-min-width: 32px;
+    --linkedin-max-width: 48px;
+    --fixed-dropdown-height: 113px;
+}
+
+/* || Nav Styles */
+.nav-bar {
+    background-color: #111111;
+    height: 8vh;
+    min-height: var(--nav-bar-min-height);
+}
+
+/* Nav-bar links and text style */
+.under-nav-bar {
+    float: left;
+    font-size: var(--nav-bar-font-size);
+    color: #ffffff;
+    text-decoration: none;  /* Remove underline on <a> tags */
+    text-align: center;
+}
+
+/* Center nav-left and nav-right vertically (why was this so hard) */
+.nav-left {
+    float: left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 4vw;
+}
+
+/* Move nav-right to the right, center links with LinkedIn image */
+.nav-right, .mobile-menu-bar {
+    float: right;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Change opacity on hover */
+.hover-able:hover {
+  opacity: 0.375;
+}
+
+/* Image scales and never leaves the black box */
+.scalable-img {
+    width: 4vmin;
+    min-width: var(--linkedin-min-width);
+    max-width: var(--linkedin-max-width);
+}
+
+/* || Mobile Nav Styles */
+/* Disable mobile navbar by default */
+.mobile-menu-bar, .mobile-submenu {
+    display: none;
+    z-index: 4;
+}
+
+/* List of links styles */
+.mobile-submenu {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 97vw;
+    height: 0;
+    background-color: #333333;
+    display: flex;
+    padding-left: 2vw;
+    overflow: hidden;
+}
+
+/* Remove bullet points and add spacing */
+.vertical-dropdown {
+    list-style-type: none;
+    padding-top: 1vh;
+}
+
+/* Hide all checkboxes */
+input[type=checkbox] {
+    display: none;
+}
+
+/* Hamburger label style */
+.hamburger {
+    cursor: pointer;
+}
+
+/* Nav links disappear when screen width less than 650 */
+@media screen and (max-width: 650px) {
+    /* Disable regular navbar and enable mobile menu bar */
+    .nav-right {
+        display: none;
+    }
+
+    .mobile-menu-bar {
+        display: block;
+    }
+
+    /* Handle transitions */
+    input:checked ~ .mobile-submenu{
+        height: calc(17.5vh + var(--fixed-dropdown-height));
+        transition: height 0.15s ease-in;
+    }
+
+    input:not(:checked) ~ .mobile-submenu{
+        height: 0;
+        transition: height 0.15s ease-out;
+    }
+}

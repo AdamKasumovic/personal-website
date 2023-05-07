@@ -1,0 +1,92 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+/* || Variables */
+:root {
+    --chat-top-margin: 20px;
+    --chatbox-height: 350px;
+    --chat-hor-margin: 12px;
+}
+
+/* || Chat styles */
+/* Chat container styles */
+.chat-page-header, #chat {
+    width: 80vw;
+    margin: 0 auto;
+    padding-bottom: 0.75em;
+    padding-top: 0.5em;
+}
+
+.chat-page-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    font-size: var(--regular-font);
+}
+
+#chat {
+    margin-top: var(--chat-top-margin);
+    height: var(--chatbox-height);
+    border: var(--border-thickness) solid #ccc;
+    border-radius: calc(var(--border-thickness) * 2);
+    background-color: #f8f8f8;
+    font-size: calc(var(--regular-font) - 2px);
+    resize: none;
+    overflow-y: auto;
+}
+
+/* Chat message styles */
+#chat > p {
+    margin-top: 0;
+    margin-right: var(--chat-hor-margin);
+    margin-left: var(--chat-hor-margin);
+}
+
+/* Chat message box styles (the one you type in) */
+.enter-message {
+    width: 80vw;
+    margin: 0.5em auto;
+}
+
+.enter-message > * {
+    width: 100%;
+    font-size: calc(var(--regular-font) - 2px);
+}
+
+/* Leave chat styles */
+.leave-chat-container {
+    width: 80vw;
+    margin: 0.5em auto;
+}
+
+#leave-chat {
+    width: 100%;
+    background-color: #222222;
+    color: #ffffff;
+    font-size: var(--large-font);
+}

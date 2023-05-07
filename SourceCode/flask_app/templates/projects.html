@@ -1,0 +1,63 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The projects page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block mainblock %}
+<main>
+    <div class="project-page-purpose">
+        <h1>
+            <span class="big-text">Projects Page</span>
+        </h1>
+        <p>
+            Welcome to my projects page! This is where I list all my web projects for you to see!
+        </p>
+    </div>
+    <hr class="line-separator">
+    <!-- Each div here should end up being a column of its own -->
+    <div class="about-me">
+        <div class="self-portrait">
+            <a class="piano-picture-link hover-able" href="/simpletrello" title='View my "Simple Trello" Project.'>
+                <img class="pic-of-piano" src="{{ url_for('static', filename='kanban/images/interface.jpg') }}"
+                     alt="A picture of the Kanban style app interface design." loading="lazy">
+            </a>
+        </div>
+        <div class="brief-desc">
+            <p class="desc-para">
+                This is another one of my web projects, assigned as the final exam in CSE 477, the
+                <a class="piano-link hover-able" href="/simpletrello" title='View my "Simple Trello" Project.'>
+                    simplified Trello project</a>.
+                It is a simple version of the popular project management tool - Trello. A project management
+                application like Trello allows team members of a project to come together and collaboratively decide,
+                work on and track the progress of various listed tasks through the project's life cycle.
+                Trello is a Kanban style application where progress of various project tasks can be easily
+                understood by looking at visual representations. Make sure you're logged in before heading over!
+            </p>
+        </div>
+    </div>
+    <hr class="line-separator">
+    <div class="about-me">
+        <div class="self-portrait">
+            <a class="piano-picture-link hover-able" href="/piano" title="View my Piano Project.">
+                <img class="pic-of-piano" src="{{ url_for('static', filename='main/images/piano.jpeg') }}"
+                     alt="A picture of a grand piano." loading="lazy">
+            </a>
+        </div>
+        <div class="brief-desc">
+            <p class="desc-para">
+                This is one of my first web projects, assigned as the first homework in CSE 477, the
+                <a class="piano-link hover-able" href="/piano" title="View my Piano Project.">
+                    piano project</a>.
+                It features a fully-working web piano created using HTML, CSS, and most importantly JavaScript
+                (JS). Use the link above or click on the piano to the left or below to check it out! Be warned,
+                a dark secret lies within the piano...
+            </p>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name">© 2022 Adam Kasumovic</p>
+{% endblock %}

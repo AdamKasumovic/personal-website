@@ -1,0 +1,174 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+main {
+    word-wrap:break-word;  /* Handle hilarious users that make very long words */
+}
+
+/* || Variables */
+:root {
+    --task-details-max-height: 113px;
+    --board-chat-top-margin: 20px;
+    --board-chatbox-height: 350px;
+    --board-chat-hor-margin: 12px;
+}
+
+/* || Actual board page styles */
+.board-container {
+    width: 90vw;
+    margin: 5vh auto;
+    background-color: #ddddff;
+    border: var(--border-thickness) solid #444488;
+}
+
+.board-name {
+    width: 85vw;
+    margin: 2.5vh auto;
+    font-size: max(2vw, var(--regular-font));
+    font-weight: bolder;
+}
+
+/* || List styles */
+.lists-container {
+    display: flex;
+    flex-direction: row;
+    width: 85vw;
+    margin: 0 auto 2.5vh;
+}
+
+.list-container {
+    width: calc(80vw/3);
+    margin: 0 auto;
+    border: var(--border-thickness) solid #444488;
+    background-color: #dddddd;
+}
+
+/* Handle edge margins */
+.list-container:first-child {
+    margin-left: 0;
+}
+
+.list-container:last-child {
+    margin-right: 0;
+}
+
+.list-name, .task-name {
+    margin: 1vh auto;
+    padding-left: 0.25vw;
+    font-size: max(1.5vw, calc(var(--regular-font) * 0.75));
+    font-weight: bolder;
+}
+
+/* || Task styles */
+.tasks-container {
+    width: 90%;
+    margin: 0 auto 1vh;
+}
+
+.task-container {
+    border: var(--border-thickness) solid #444488;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+/* This targets all task containers except the last one within "tasks-container"s */
+.task-container:not(:last-child) {
+    margin-bottom: 1vh;
+}
+
+.task-container * {
+    margin-bottom: 0;
+}
+
+.task-details {
+    border: var(--border-thickness) solid #444488;
+    width: 90%;
+    margin: 1vh auto;
+    font-size: max(1.25vw, calc(var(--regular-font) * 0.75 * 5 / 6));
+    max-height: var(--task-details-max-height);
+    overflow: auto;
+}
+
+.edit-submit-container {
+    width: 90%;
+    margin: 0 auto 1vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.edit-or-submit-button {
+    background-color: #222222;
+    color: #ffffff;
+    font-size: max(1.25vw, calc(var(--regular-font) * 0.75 * 5 / 6));
+    width: 45%;
+}
+
+/* || Chat styles */
+#board-chat {
+    width: 80vw;
+    padding-bottom: 0.75em;
+    padding-top: 0.5em;
+    margin: var(--board-chat-top-margin) auto 0;
+    height: var(--board-chatbox-height);
+    border: var(--border-thickness) solid #ccc;
+    border-radius: calc(var(--border-thickness) * 2);
+    background-color: #f8f8f8;
+    font-size: calc(var(--regular-font) - 2px);
+    resize: none;
+    overflow-y: auto;
+}
+
+/* Chat message styles */
+#board-chat > p {
+    margin-top: 0;
+    margin-right: var(--board-chat-hor-margin);
+    margin-left: var(--board-chat-hor-margin);
+}
+
+/* Chat message box styles (the one you type in) */
+.board-enter-message {
+    width: 80vw;
+    margin: 0.5em auto;
+}
+
+.board-enter-message > * {
+    width: 100%;
+    font-size: calc(var(--regular-font) - 2px);
+}
+
+/* Submit styles */
+.submit-chat-container {
+    width: 80vw;
+    margin: 0.5em auto;
+}
+
+#submit-chat {
+    width: 100%;
+    background-color: #222222;
+    color: #ffffff;
+    font-size: var(--large-font);
+}

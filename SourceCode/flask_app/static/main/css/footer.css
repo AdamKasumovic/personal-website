@@ -1,0 +1,48 @@
+/* || General Styles */
+/*
+body {
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+
+}
+
+ul, ol {
+
+}
+
+table {
+
+}
+
+a {
+
+}
+*/
+
+/* || Footer Styles */
+.copyright-container {
+    margin-top: 2vh;
+}
+
+.copyright-with-name {
+    position: fixed;  /* Fix to bottom of screen */
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    text-justify: inter-word;
+    color: #aaaaaa;
+    padding-bottom: 2vh;
+}
+
+/* Unfix footer when screen too short */
+@media screen and (max-height: 950px) {
+    .copyright-with-name {
+        position: relative;
+    }
+}

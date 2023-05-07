@@ -1,0 +1,59 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The login page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main/css/login.css') }}">
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="{{ url_for('static', filename='main/js/login.js') }}" defer></script>
+{% endblock %}
+
+{% block mainblock %}
+<main>
+    <!-- A header about the page -->
+    <div class="login-page-header">
+        <h1>
+            <span class="big-text">Login Page</span>
+        </h1>
+        <p>
+            Please log in to participate in chat or use my "Simplified Trello" app.
+        </p>
+    </div>
+    <hr class="line-separator">
+    <div class="login-form-container">
+        <!-- The login form -->
+        <form class="login-form">
+            <!-- "email" type decently enforces valid emails -->
+            <input id="login-email" type="email" name="login-email" title="Type in a valid email."
+               placeholder="Enter your email address." required/>
+            <br>
+            <!-- Must be 8 characters or longer (any more rules would break "password" being a valid password) -->
+            <input id="login-password" type="password" name="login-password"
+               title="Type in a password that is 8 characters or longer." placeholder="Enter your password."
+               pattern=".{8,}" required/>
+            <br>
+            <input class="hover-able" id="login-submit" type="submit" title="Hit the Log In button." value="Log In"
+                   onclick="checkCredentials()">
+        </form>
+        <!-- Unsuccessful login counter -->
+        <span id="unsuccessful-login-attempts">
+            Log in failed. Unsuccessful login attempts: <span id="unsuccessful-login-attempts-count"></span>
+        </span>
+        <!-- Sign up page link on the login page, inspired by how TikTok does it -->
+        <span class="dont-have-account">
+            Don't have an account? <a class="sign-up-link hover-able" href="/signup" title="Sign Up Page">Sign up</a>
+        </span>
+    </div>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name">© 2022 Adam Kasumovic</p>
+{% endblock %}

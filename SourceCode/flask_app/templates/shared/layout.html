@@ -1,0 +1,207 @@
+{#<!-- FILL ME IN WITH CODE FOR YOUR PAGE LAYOUT -->#}
+{#<!DOCTYPE html>#}
+{#<html lang="eng">#}
+{#<head>#}
+{#  <meta charset="utf-8">#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#  <title>Dr. Ghassemi's personal page</title>#}
+{#  <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/main.css') }}">#}
+{#  <link rel="shortcut icon" href="{{ url_for('static', filename='main/images/favicon.ico') }}">#}
+{#  {% block extracss %}{% endblock %}#}
+{#  <script src="{{ url_for('static', filename='main/js/main.js') }}" defer></script>#}
+{#  {% block extrajs %}{% endblock %}#}
+{#</head>#}
+{##}
+{#<body>#}
+{#    <article>#}
+{#    <!-- The header  -->#}
+{#    <header>#}
+{#        <p> The future home of an amazing header </p>#}
+{#    </header>#}
+{##}
+{#    <!-- The navigation bar -->#}
+{#    <nav>#}
+{#      <div>#}
+{#      {% if user == 'Unknown' %}  #}
+{#      <p>CSE 477 - Final Exam</p>#}
+{#      {% else %}#}
+{#      <p>Logged in as {{user}}</p>#}
+{#      {% endif %}#}
+{#      <br>#}
+{#      #}
+{##}
+{#      <a href="/home">Home</a>#}
+{#      <a href="/chat">Chat</a>#}
+{#      <a href="/login">Login</a>#}
+{#      <a href="/logout">Logout</a>#}
+{#    </nav>#}
+{##}
+{#    <!-- The main content  -->#}
+{#    <main>#}
+{#      {% block maincontent %}{% endblock %}#}
+{#    </main>#}
+{##}
+{#    <!-- The footer of the file -->#}
+{#    <footer>#}
+{#        <p>© 2022 Mohammad M. Ghassemi</p>#}
+{#    </footer>#}
+{##}
+{#    </article>#}
+{#  #}
+{#</body>#}
+{##}
+{#</html>#}
+
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+
+        <!-- General website information -->
+        {% block metadescription %}{% endblock %}
+        <meta name="keywords" content="CSE477 CSE 477 HTML CSS JS backend back-end frontend front-end Jinja MySQL
+        Python Flask Adam Kasumovic Final Exam">
+        <meta name="author" content="Adam Kasumovic">
+        <title>CSE 477 - Final Exam by Adam Kasumovic</title>
+
+        <!-- Custom icon -->
+        <link rel="apple-touch-icon" sizes="180x180"
+              href="{{ url_for('static', filename='main/images/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32"
+              href="{{ url_for('static', filename='main/images/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16"
+              href="{{ url_for('static', filename='main/images/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ url_for('static', filename='main/documents/site.webmanifest') }}">
+
+        <!-- CSS links -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main/css/header.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main/css/navbar.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main/css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main/css/footer.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main/css/feedback.css') }}">
+        {% block extracss %}{% endblock %}
+
+        <!-- Responsive design essential -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Any additional fonts -->
+        {% block extrafonts %}{% endblock %}
+
+        <!-- JS scipts -->
+        <script src="{{ url_for('static', filename='main/js/feedback.js') }}" defer></script>
+        {% block extrajs %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <!-- Banner image container -->
+            <div class="box">
+                <img class="banner-image" src="{{ url_for('static', filename='main/images/banner.jpg') }}"
+                     alt="A beautiful image of the badlands with an incredible variety of naturally-occurring colors."
+                     loading="lazy">
+            </div>
+        </header>
+        <nav class="nav-bar">
+            <!-- Left-hand-side navbar elements -->
+            <div class="nav-left">
+                <!-- Handle navbar left text depending on login status, truncate email if too long,
+                     only display whatever is before the '@' -->
+                {% if session['email'] and db.reversibleEncrypt('decrypt', session['email'])
+                [:db.reversibleEncrypt('decrypt', session['email']).find('@')] | length <= 15 %}
+                <p class="under-nav-bar">{{ "CSE 477 - Final Exam" if not session['email']
+                else "Hello, " + db.reversibleEncrypt('decrypt', session['email'])
+                [:db.reversibleEncrypt('decrypt', session['email']).find('@')]}}</p>
+                {% else %}
+                <p class="under-nav-bar">{{ "CSE 477 - Final Exam" if not session['email']
+                else "Hello, " + (db.reversibleEncrypt('decrypt', session['email'])
+                [:db.reversibleEncrypt('decrypt', session['email']).find('@')])[:12] + '...'}}</p>
+                {% endif %}
+            </div>
+            <!-- Controls what the login/logout text is -->
+            {% set log_in_text = 'Login' if 'email' not in session else 'Logout' %}
+            <!-- Right-hand-side navbar elements -->
+            <div class="nav-right">
+                <a class="under-nav-bar hover-able" href="/home" title="Home Page">Home</a>
+                <a class="under-nav-bar hover-able" href="/projects" title="Projects Page">Projects</a>
+                <a class="under-nav-bar hover-able" href="/resume" title="View my resume.">Resume</a>
+                <a class="under-nav-bar hover-able" href="/chat" title="Join chat (must be logged in).">Chat</a>
+                <a class="under-nav-bar hover-able" href={{ "/" + log_in_text.lower() }} title={{ log_in_text + "." }}>
+                    {{ log_in_text }}</a>
+                <a class="under-nav-bar hover-able"
+                   href="https://www.linkedin.com/in/adam-kasumovic-7488a0233/" title="View my LinkedIn page."
+                   target="_blank">
+                    <img class="scalable-img" src="{{ url_for('static', filename='main/images/social-linkedin.png') }}"
+                         alt="The LinkedIn logo." loading="lazy">
+                </a>
+            </div>
+
+            <!-- Mobile navbar elements -->
+            <div class="mobile-menu-bar">
+                <!-- Get checkbox input to trigger dropdown menu -->
+                <input id="menu-bar-check" type="checkbox" name="menu-bar" title="Requires a click on the icon."/>
+                <label for="menu-bar-check" class="hover-able hamburger">
+                    <img class="scalable-img" src="{{ url_for('static', filename='main/images/menu-bar.png') }}"
+                         alt="The hamburger icon." loading="lazy">
+                </label>
+
+                <!-- Mobile submenu, has LinkedIn link as text and uses <ul> over <div> -->
+                <div class="mobile-submenu">
+                    <ul class="vertical-dropdown">
+                        <li>
+                            <a class="under-nav-bar hover-able" href="/home" title="Home Page">Home</a>
+                        </li>
+                        <li>
+                            <a class="under-nav-bar hover-able" href="/projects" title="Projects Page">Projects</a>
+                        </li>
+                        <li>
+                            <a class="under-nav-bar hover-able" href="/resume" title="View my resume.">Resume</a>
+                        </li>
+                        <li>
+                            <a class="under-nav-bar hover-able" href="/chat" title="Join chat (must be logged in).">
+                                Chat</a>
+                        </li>
+                        <li>
+                            <a class="under-nav-bar hover-able" href={{ "/" + log_in_text.lower() }}
+                                    title={{ log_in_text + "." }}>{{ log_in_text }}</a>
+                        </li>
+                        <li>
+                            <a class="under-nav-bar hover-able"
+                               href="https://www.linkedin.com/in/adam-kasumovic-7488a0233/"
+                               title="View my LinkedIn page." target="_blank">LinkedIn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block mainblock %}{% endblock %}
+        <footer class="copyright-container">
+            {% block footercontent %}{% endblock %}
+        </footer>
+        <!-- The feedback button -->
+        <div class="feedback-button-container hover-able">
+            <!-- Get checkbox input to trigger feedback form -->
+            <input id="feedback-check" type="checkbox" name="feedback" title="Requires a click on the button."/>
+            <label for="feedback-check" class="feedback-button">
+                Feedback
+            </label>
+        </div>
+        <!-- The feedback form -->
+        <div class="feedback-form-container">
+            <form class="feedback-form" action="/processfeedback" method="post"
+                  enctype="application/x-www-form-urlencoded">
+                <input id="name" name="name" title="Type in a valid name." placeholder="Enter your name."
+                       pattern="[A-Za-z][A-Za-z\s]+" required>
+                <br>
+                <!-- "email" type decently enforces valid emails -->
+                <input id="email" type="email" name="email" title="Type in a valid email."
+                       placeholder="Enter your email address." required>
+                <br>
+                <textarea id="comment" name="comment" title="Type in a valid comment."
+                          placeholder="Enter your feedback." required></textarea>
+                <br>
+                <input class="hover-able" id="submit" type="submit" title="Hit the SEND button." value="SEND">
+            </form>
+        </div>
+        <!-- For additional audio files -->
+        {% block extraaudio %}{% endblock %}
+    </body>
+</html>

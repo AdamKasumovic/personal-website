@@ -1,0 +1,57 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The sign up page for CSE 477's Final Exam, by Adam Kasumovic">
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main/css/login.css') }}">
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+<script src="{{ url_for('static', filename='main/js/signup.js') }}" defer></script>
+{% endblock %}
+
+{% block mainblock %}
+<!-- Again, it's "time management" -->
+<main>
+    <!-- A header about the page -->
+    <div class="login-page-header">
+        <h1>
+            <span class="big-text">Sign Up Page</span>
+        </h1>
+        <p>
+            Please sign up by filling out the fields below.
+        </p>
+    </div>
+    <hr class="line-separator">
+    <div class="login-form-container">
+        <!-- The signup form, ignore the class names ;) -->
+        <form class="login-form">
+            <!-- "email" type decently enforces valid emails -->
+            <input id="login-email" type="email" name="login-email" title="Type in a valid email."
+               placeholder="Enter your email address." required/>
+            <br>
+            <!-- Must be 8 characters or longer (any more rules would break "password" being a valid password) -->
+            <input id="login-password" type="password" name="login-password"
+               title="Type in a password that is 8 characters or longer." placeholder="Enter your password."
+               pattern=".{8,}" required/>
+            <br>
+            <input class="hover-able" id="login-submit" type="submit" title="Hit the Sign Up button." value="Sign Up"
+                   onclick="signUp()">
+        </form>
+        <!-- Unsuccessful sign up message -->
+        <span id="unsuccessful-login-attempts">
+            Sign up failed. Email already in use. Go back to <a class="login-link hover-able" href="/login"
+                                                                title="Log In Page">Login Page</a>?
+        </span>
+    </div>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+<p class="copyright-with-name">© 2022 Adam Kasumovic</p>
+{% endblock %}
